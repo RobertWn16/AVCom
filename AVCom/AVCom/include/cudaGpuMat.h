@@ -1,6 +1,7 @@
-#pragma once
-#include "../Interfaces/IcudaGpuMat.h"
+#ifndef _H_CUDAGPUMAT_H_
+#define _H_CUDAGPUMAT_H_
 
+#include "../Interfaces/IcudaGpuMat.h"
 #ifdef __cplusplus
 extern "C"
 {
@@ -56,3 +57,5 @@ static IcudaGpuMatVtbl IcudaGpuMat_Vtbl = { cudaMat_QueryInterface,
 	cudaMat_getHeigth,
 	cudaMat_getPitch,
 };
+#endif // !_H_CUDAGPUMAT_H_
+

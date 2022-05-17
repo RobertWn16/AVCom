@@ -1,8 +1,10 @@
-#pragma once
+#ifndef _H_DLL_ERR_H_
+#define _H_DLL_ERR_H_
+
 #include <Windows.h>
 #include <stdio.h>
 #ifdef __cplusplus
-extern "C" 
+extern "C"
 {
 #endif // __cplusplus
 
@@ -62,3 +64,5 @@ static void CUDALog(int line, char* file, CUresult cuResult)
 #define ck(line, file, __avError) FFMPEGLog(line, file ,__avError);
 #define WIN32ck(line, file, errResult) Win32Log(line, file, errResult);
 #define CUDAck(line, file, cuResult) CUDALog(line, file, cuResult);
+
+#endif // !_H_DLL_ERR_H

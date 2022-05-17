@@ -1,5 +1,7 @@
-#include "../Interfaces/INvdecService.h"
+#ifndef _H_NVDECSERVICE_H_
+#define _H_NVDECSERVICE_H_
 
+#include "../Interfaces/INvdecService.h"
 #ifdef __cplusplus
 extern "C"
 {
@@ -7,7 +9,7 @@ extern "C"
 	HRESULT STDMETHODCALLTYPE backend_QueryInterface(INvdecService*, REFIID, _COM_Outptr_ void** data);
 	HRESULT STDMETHODCALLTYPE backend_AddRef(INvdecService*);
 	HRESULT STDMETHODCALLTYPE backend_Release(INvdecService*);
-	HRESULT STDMETHODCALLTYPE backend_CreateInstance(INvdecService* , REFIID, _COM_Outptr_ void** data);
+	HRESULT STDMETHODCALLTYPE backend_CreateInstance(INvdecService*, REFIID, _COM_Outptr_ void** data);
 
 	HRESULT STDMETHODCALLTYPE backend_initD3D9(INvdecService*);
 	HRESULT STDMETHODCALLTYPE backend_initXAudio(INvdecService*);
@@ -137,3 +139,6 @@ static const INvdecServiceVtbl INvdecService_Vtbl = { backend_QueryInterface,
 	backend_getDuration,
 	backend_getFramerate
 };
+
+#endif // !_H_NVDECSERVICE_H_
+

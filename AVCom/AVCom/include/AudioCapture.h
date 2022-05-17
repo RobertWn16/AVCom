@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_AUDIOCAPTURE_H_
+#define _H_AUDIOCAPTURE_H_
+
 #include "../Interfaces/IAudioCapture.h"
 #pragma warning (disable : 4996)
 
@@ -61,3 +63,7 @@ static const IAudioCaptureVtbl IAudioCapture_Vtbl = { audiocapture_QueryInterfac
 	audiocapture_stop,
 	audiocapture_seek
 };
+
+
+#endif // !_H_AUDIOCAPTURE_H_
+

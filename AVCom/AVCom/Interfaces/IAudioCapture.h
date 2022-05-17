@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_IAUDIOCAPTURE_H_
+#define _H_IAUDIOCAPTURE_H_
+
 #include <xaudio2.h>
 #include "dll_err.h"
 
@@ -223,3 +225,5 @@ interface IAudioCapture
 };
 
 #endif // __cplusplus
+
+#endif // !_H_IAudioCapture_H_

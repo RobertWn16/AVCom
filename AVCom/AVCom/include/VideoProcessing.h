@@ -1,3 +1,6 @@
+#ifndef _H_VIDEOPROCESSING_H_
+#define _H_VIDEOPROCESSING_H_
+
 #include "../Interfaces/IVideoProcessing.h"
 
 #ifdef __cplusplus
@@ -25,4 +28,8 @@ videoProcessing_AddRef,
 videoProcessing_Release,
 videoProcessing_CreateInstance,
 videoProcessing_initCudaEnv,
-videoProcessing_getCudaDevice };
+videoProcessing_getCudaDevice
+};
+
+#endif // !_H_AUDIOCAPTURE_H_
+

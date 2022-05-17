@@ -1,4 +1,3 @@
-#pragma once
 #include "../include/cudaGpuMat.h"
 #include "../include/nvdec_bgr_bgra.cuh"
 

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_INVDECSERVICE_H_
+#define _H_INVDECSERVICE_H_
+
 #include <nvcuvid/nvcuvid.h>
 #include <nvcuvid/cuviddec.h>
 #include <nppi.h>
@@ -40,7 +42,7 @@ public:
 	virtual HRESULT STDMETHODCALLTYPE CreateInstance(REFIID refiid, _COM_Outptr_ void** data);
 
 	/*Initialize D3D9 engine and buffer for presentation of frames.
-	
+
 	@Error codes:
 	S_OK - success.
 
@@ -52,7 +54,7 @@ public:
 	virtual HRESULT STDMETHODCALLTYPE initD3D9() = 0;
 
 	/*Reads metadata about url and initialize cuda parser based on nvdec flags.
-	
+
 	@Error codes:
 	S_OK - success.
 	ERROR_FILE_NOT_FOUND - the url is not valid or file can't be find.
@@ -70,9 +72,9 @@ public:
 	NVDEC_DECODING_NETWORK(network) and NVDEC_DECODIING_DESKTOP is not fully tested and don't use for now.
 	*/
 	virtual HRESULT STDMETHODCALLTYPE VideoCapture(char* url, int nvdecflags, int gpuOrdinal) = 0;
-	
+
 	/*Read the video stream with the orginal framerate.
-	
+
 	@Error codes:
 	S_OK - success.
 
@@ -94,11 +96,11 @@ public:
 	virtual HRESULT STDMETHODCALLTYPE read() = 0;
 
 	/*Get the current width of frame.
-	
+
 	@Error codes:
-	
+
 	@Params:
-	
+
 	@Remarks: Returns the current width of frame through read or readSync method*/
 	virtual inline unsigned int STDMETHODCALLTYPE getFrameWidth() = 0;
 
@@ -112,24 +114,24 @@ public:
 	virtual inline unsigned int STDMETHODCALLTYPE getFrameHeigth() = 0;
 
 	/*Get the current size of frame in bytes.
-	
+
 	@Error codes:
-	
+
 	@Params:
-	
+
 	@Remarks:*/
 	virtual inline long int STDMETHODCALLTYPE getFrameSize() = 0;
 
 	/*Get the pointer to the current frame data(compressed).
 	@Error codes:
-	
+
 	@Params:
-	
+
 	@Remarks:*/
 	virtual AVPacket* STDMETHODCALLTYPE getFrame() = 0;
 
 	/*Select NVIDIA gpu based on index.
-	
+
 	@Error codes:
 	S_OK - success.
 	ERROR_INVALID_DEVICE_OBJECT_PARAMETER - index of cuda gpu device is invalid.
@@ -144,40 +146,40 @@ public:
 	virtual HRESULT STDMETHODCALLTYPE selectGpuDevice(int ordinal) = 0;
 
 	/*Decode the context at max gpu speed(except live transmissions). Recommend for conversion of videos.
-	
+
 	@Error codes:
 	S_OK - success.
 	E_UNEXPECTED - unexpected driver error.
 	E_INVALIDARG - the data transfered to decoder is invalid or unsupported.
-	
+
 	@Params:
 	[in]compressedFrame -  from ffmpeg demuxing usually obtained with getFrame method.
 	[out]decodedFrame - decoded frame assigned to VRAM. Decoded frame is a R8G8B8A8 image.
-	
+
 	@Remarks:
 	The user must set flag of decodedFrame to gpuMat_R8B8G8A8 in Alloc method.*/
 	virtual HRESULT STDMETHODCALLTYPE decode(void* compressedFrame, IcudaGpuMat* decodedFrame) = 0;
-	
+
 	/*Decode the context at video current framerate. Recommend for video players.
-	
+
 	@Error codes:
 	S_OK - success.
 	E_UNEXPECTED - unexpected driver error.
 	E_INVALIDARG - the data transfered to decoder is invalid or unsupported.
-	
+
 	@Params:
 	[out]decodedFrame - decoded frame assigned to VRAM. Decoded frame is a R8G8B8A8 image.
-	
+
 	@Remarks:
 	Don't use this method for live transmission use decode instead and read method.*/
 	virtual HRESULT STDMETHODCALLTYPE decodeSync(IcudaGpuMat* decodedFrame) = 0;
 
 	/*Maps a R8B8G8A8 container to D3D9 surface(texture).
-	
+
 	@Error codes:
 	S_OK - success.
 	ERROR_RESOURCE_DATA_NOT_FOUND - the backbuffer is not register. Check initD3D9() returned result.
-	
+
 	@Params:
 	[in]gpuTexture - decoded frame is register to D3D9Cuda.
 
@@ -186,11 +188,11 @@ public:
 	virtual HRESULT STDMETHODCALLTYPE MapToD3D9Tex(IcudaGpuMat* gpuTexture) = 0;
 
 	/*Present the current decoded frame in an HWND. The user should specify the region where the frame is presented.
-	
+
 	@Error codes:
 	S_OK - success.
 	E_INVALIDARG - hwnd is not valid.
-	
+
 	@Params:
 	[in]hWnd - current window where the context is presented.
 	[in]rect - area where the context should be presented.
@@ -199,12 +201,12 @@ public:
 	virtual HRESULT STDMETHODCALLTYPE presentFrame(HWND hWnd, RECT rect) = 0;
 
 	/*Plays the current stream if it is paused.
-	
+
 	@Error codes:
 	S_OK - success.
-	
+
 	@Params:
-	
+
 	@Remarks:*/
 	virtual inline HRESULT STDMETHODCALLTYPE play() = 0;
 
@@ -219,22 +221,22 @@ public:
 	virtual inline HRESULT STDMETHODCALLTYPE pause() = 0;
 
 	/*Seek the stream to the specified second.
-	
+
 	@Error codes:
 	S_OK - success.
 	ERROR_SEEK - error in seeking the stream.
 	@Params:
-	
+
 	@Remarks:
 	Don't use the seek method for live transmission that's not make any sense.*/
 	virtual HRESULT STDMETHODCALLTYPE seek(int64_t) = 0;
 
 	/*Get duration of current stream.
-	
+
 	@Error codes:
-	
+
 	@Params:
-	
+
 	@Remarks:*/
 	virtual inline double STDMETHODCALLTYPE getDuration() = 0;
 
@@ -506,3 +508,6 @@ interface INvdecService {
 };
 
 #endif // __cplusplus
+
+#endif // !_H_INVDECSERVICE_H_
+

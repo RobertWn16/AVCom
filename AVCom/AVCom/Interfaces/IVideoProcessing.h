@@ -1,3 +1,6 @@
+#ifndef _H_IVIDEOPROCESSING_H_
+#define _H_IVIDEOPROCESSING_H_
+
 #include "INvdecService.h"
 #include "IAudioCapture.h"
 
@@ -12,7 +15,7 @@ DEFINE_GUID(IID_IVideoProcessing, 0x6d4ae06c, 0xae4c, 0x4e6f, 0xae, 0x07,
 MIDL_INTERFACE("6D4AE06C-AE4C-4E67-AE07-B4257A533C81")
 IVideoProcessing : public IUnknown
 {
-public:	
+public:
 	/*Create an instance of an object based on IID and alloc the interface handlers and pointers
 	of the object interface.
 
@@ -33,10 +36,10 @@ public:
 	@Error codes:
 	S_OK - success.
 	E_ABORT - fatal error. Probably nvidia gpu doesn't exist.
-	
+
 	@Params:
 	[in]driverIndex - set to 0 always.
-	
+
 	@Remarks:
 	Before using all INvdecService functionality the user need to call this method.*/
 	virtual HRESULT STDMETHODCALLTYPE initCudaEnv(int driverIndex) = 0;
@@ -85,3 +88,7 @@ interface IVideoProcessing {
 	CONST_VTBL IVideoProcessingVtbl* lpVtbl;
 };
 #endif // __cplusplus
+
+
+#endif // !_H_IVIDEOPROCESSING_H_
+

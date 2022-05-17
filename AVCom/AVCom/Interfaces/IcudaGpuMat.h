@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _H_ICUDAGPUMAT_H_
+#define _H_ICUDAGPUMAT_H_
+
 #include <cuda.h>
 #include <nppi.h>
 #include <initguid.h>
@@ -23,21 +25,21 @@ IcudaGpuMat : public IUnknown
 public:
 	BEGIN_INTERFACE
 
-	/*IcudaGpuMat object is assigned to GPU VRAM(cuda) specifying the width, heigth and number of channels.
+		/*IcudaGpuMat object is assigned to GPU VRAM(cuda) specifying the width, heigth and number of channels.
 
-	@Error codes:
-	S_OK - success.
-	E_OUTOFMEMORY - out of memory on GPU.
+		@Error codes:
+		S_OK - success.
+		E_OUTOFMEMORY - out of memory on GPU.
 
-	@Params:
-	[in]flags - number of channels depending on image format.
-				Flags can be found in github readme.
-	[in]width - input width of buffer.
-	[in]heigth - input heigth of buffer.
-	@Remarks:
-	Not all image formats are supported.
-	*/
-	virtual HRESULT STDMETHODCALLTYPE Alloc(int flags, size_t width, size_t heigth) = 0;
+		@Params:
+		[in]flags - number of channels depending on image format.
+					Flags can be found in github readme.
+		[in]width - input width of buffer.
+		[in]heigth - input heigth of buffer.
+		@Remarks:
+		Not all image formats are supported.
+		*/
+		virtual HRESULT STDMETHODCALLTYPE Alloc(int flags, size_t width, size_t heigth) = 0;
 
 	/*If IcudaGpuMat object is in use then the gpu memory assigned to this is freed.
 	The user now can assign new dimension and format to the current object.
@@ -59,7 +61,7 @@ public:
 	virtual HRESULT STDMETHODCALLTYPE cloneGPUToArray(IcudaGpuMat* dest) = 0;
 
 	/*Copy the source container to destination container.
-	
+
 	@Error codes:
 	S_OK - success.
 	E_INVALIDARG - the dimensions of destination container aren't equal to source or destination container is invalid.
@@ -170,25 +172,25 @@ typedef struct IcudaGpuMatVtbl {
 	HRESULT(STDMETHODCALLTYPE* Release)(IcudaGpuMat*);
 
 	/*IcudaGpuMat object is assigned to GPU VRAM(cuda) specifying the width, heigth and number of channels.
-	
+
 	@Error codes:
 	S_OK - success.
 	E_OUTOFMEMORY - out of memory on GPU.
 
 	@Params:
 	[in]this - pointer to the current object.
-	[in]flags - number of channels depending on image format. 
+	[in]flags - number of channels depending on image format.
 				Flags can be found in github readme.
 	[in]width - input width of buffer.
 	[in]heigth - input heigth of buffer.
 	@Remarks:
 	Not all image formats are supported.
 	*/
-	HRESULT(STDMETHODCALLTYPE* Alloc)(IcudaGpuMat* this, int flags, size_t , size_t);
+	HRESULT(STDMETHODCALLTYPE* Alloc)(IcudaGpuMat* this, int flags, size_t, size_t);
 
 	/*If IcudaGpuMat object is in use then the gpu memory assigned to this is freed.
 	The user now can assign new dimension and format to the current object.
-	
+
 	@Error codes:
 	S_OK - success.
 	E_OUTOFMEMORY - out of memory on GPU.
@@ -207,7 +209,7 @@ typedef struct IcudaGpuMatVtbl {
 	HRESULT(STDMETHODCALLTYPE* cloneGPUToArray)(IcudaGpuMat*, IcudaGpuMat*);
 
 	/*Copy the source container to destination container.
-	
+
 	@Error codes:
 	S_OK - success.
 	E_INVALIDARG - the dimensions of destination container aren't equal to source or destination container is invalid.
@@ -225,7 +227,7 @@ typedef struct IcudaGpuMatVtbl {
 	//HRESULT(STDMEHTODCALLTYPE* cloneCPU)(IcudaGpuMat*, ICpuMat*);
 
 	/*Convert the current YUV container to the RGB container
-	
+
 	@Error codes:
 	S_OK - success.
 	E_INVALIDARG - the width and heigth of destination container aren't equal to source or destination container is invalid.
@@ -256,9 +258,9 @@ typedef struct IcudaGpuMatVtbl {
 	HRESULT(STDMETHODCALLTYPE* convertRGBtoRGBA)(IcudaGpuMat* this, IcudaGpuMat* des);
 
 	/*Get the current width of container.
-	
+
 	@Error codes:
-	
+
 	@Params:
 	[in]this -  pointer to the current object
 
@@ -267,7 +269,7 @@ typedef struct IcudaGpuMatVtbl {
 
 	/*Get the current heigth of container.
 	@Error codes:
-	
+
 	@Params:
 	[in]this -  pointer to the current object
 
@@ -290,3 +292,6 @@ interface IcudaGpuMat
 	CONST_VTBL IcudaGpuMatVtbl* lpVtbl;
 };
 #endif // __cplusplus
+
+#endif // !_H_IcudaGpuMat_H_
+
