@@ -17,7 +17,28 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\AudioCapture.h" />
+    <ClInclude Include="include\cudaGpuMat.h" />
+    <ClInclude Include="include\NvdecService.h" />
+    <ClInclude Include="include\nvdec_bgr_bgra.cuh" />
+    <ClInclude Include="include\VideoProcessing.h" />
+    <ClInclude Include="Interfaces\dll_err.h" />
+    <ClInclude Include="Interfaces\IAudioCapture.h" />
+    <ClInclude Include="Interfaces\IcudaGpuMat.h" />
+    <ClInclude Include="Interfaces\INvdecService.h" />
+    <ClInclude Include="Interfaces\IVideoProcessing.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AudioCapture.c" />
+    <ClCompile Include="src\cudaGpuMat.c" />
+    <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\NvdecService.c" />
+    <ClCompile Include="src\VideoProcessing.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="src\nvdec_bgr_bgra.cu" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -28,64 +49,74 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 11.6.props" />
   </ImportGroup>
-  <ImportGroup Label="Shared" >
+  <ImportGroup Label="Shared">
   </ImportGroup>
-    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    </ImportGroup>
-    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    </ImportGroup>
-    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    </ImportGroup>
-    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    </ImportGroup>
-
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\external;$(IncludePath)</IncludePath>
+    <LibraryWPath>C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib;C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib\x64;$(LibraryWPath)</LibraryWPath>
+    <LibraryPath>C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib\x64;C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\external;$(IncludePath)</IncludePath>
+    <LibraryWPath>C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib;C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib\x64;$(LibraryWPath)</LibraryWPath>
+    <LibraryPath>C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib\x64;C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\external;$(IncludePath)</IncludePath>
+    <LibraryWPath>C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib;C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib\x64;$(LibraryWPath)</LibraryWPath>
+    <LibraryPath>C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib\x64;C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\external;$(IncludePath)</IncludePath>
+    <LibraryWPath>C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib;C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib\x64;$(LibraryWPath)</LibraryWPath>
+    <LibraryPath>C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib\x64;C:\Users\gheor\Documents\AV2Com\AVCom\AVCom\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
-
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -142,9 +173,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-
-  <ItemGroup></ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 11.6.targets" />
   </ImportGroup>
 </Project>
