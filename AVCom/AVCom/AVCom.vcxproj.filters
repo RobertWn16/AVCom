@@ -1,17 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <ClInclude Include="Interfaces\dll_err.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\IAudioCapture.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\IcudaGpuMat.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\INvdecService.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\IVideoProcessing.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AudioCapture.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cudaGpuMat.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nvdec_bgr_bgra.cuh">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NvdecService.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VideoProcessing.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{97d60d99-f50d-4a55-b9c4-681b41095bfe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Include">
+      <UniqueIdentifier>{e2bda38b-b402-4f51-a2fd-65e78d5c54c2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="src">
+      <UniqueIdentifier>{5bfebb99-35ab-4d70-a883-ae90255b723c}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AudioCapture.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cudaGpuMat.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NvdecService.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VideoProcessing.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="src\nvdec_bgr_bgra.cu">
+      <Filter>src</Filter>
+    </CudaCompile>
   </ItemGroup>
 </Project>
